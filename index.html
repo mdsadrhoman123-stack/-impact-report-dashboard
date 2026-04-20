@@ -245,8 +245,33 @@
   }
 
   .dept-head {
-    font-size: 12px;
+    font-size: 13px;
+    color: var(--ink);
+    font-weight: 500;
+    margin-bottom: 2px;
+  }
+  .dept-designation {
+    font-size: 11px;
     color: var(--muted);
+    letter-spacing: 0.5px;
+  }
+  .dept-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--blue), var(--gold));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Serif Display', serif;
+    font-size: 16px;
+    color: #fff;
+    margin-right: 12px;
+    flex-shrink: 0;
+  }
+  .dept-head-info {
+    display: flex;
+    align-items: center;
   }
 
   .dept-score {
@@ -546,7 +571,13 @@
         <div class="dept-header">
           <div>
             <div class="dept-name">Engineering</div>
-            <div class="dept-head">Head: Rahim Ahmed</div>
+            <div class="dept-head-info">
+              <div class="dept-avatar">RA</div>
+              <div>
+                <div class="dept-head">Rahim Ahmed</div>
+                <div class="dept-designation">Head of Engineering</div>
+              </div>
+            </div>
           </div>
           <div class="dept-score">
             <div class="dept-score-num">100%</div>
@@ -579,7 +610,13 @@
         <div class="dept-header">
           <div>
             <div class="dept-name">Marketing</div>
-            <div class="dept-head">Head: Karim Hassan</div>
+            <div class="dept-head-info">
+              <div class="dept-avatar">KH</div>
+              <div>
+                <div class="dept-head">Karim Hassan</div>
+                <div class="dept-designation">Head of Marketing</div>
+              </div>
+            </div>
           </div>
           <div class="dept-score">
             <div class="dept-score-num">100%</div>
@@ -612,7 +649,13 @@
         <div class="dept-header">
           <div>
             <div class="dept-name">Finance</div>
-            <div class="dept-head">Head: Jahir Uddin</div>
+            <div class="dept-head-info">
+              <div class="dept-avatar">JU</div>
+              <div>
+                <div class="dept-head">Jahir Uddin</div>
+                <div class="dept-designation">Head of Finance</div>
+              </div>
+            </div>
           </div>
           <div class="dept-score">
             <div class="dept-score-num" style="color:var(--gold)">50%</div>
@@ -639,7 +682,13 @@
         <div class="dept-header">
           <div>
             <div class="dept-name">Operations</div>
-            <div class="dept-head">Head: Salma Begum</div>
+            <div class="dept-head-info">
+              <div class="dept-avatar">SB</div>
+              <div>
+                <div class="dept-head">Salma Begum</div>
+                <div class="dept-designation">Head of Operations</div>
+              </div>
+            </div>
           </div>
           <div class="dept-score">
             <div class="dept-score-num" style="color:var(--gold)">50%</div>
@@ -759,7 +808,7 @@
     <div class="dept-grid">
       <div class="dept-card">
         <div class="dept-header">
-          <div><div class="dept-name">Engineering</div><div class="dept-head">Head: Rahim Ahmed</div></div>
+          <div><div class="dept-name">Engineering</div><div class="dept-head-info"><div class="dept-avatar">RA</div><div><div class="dept-head">Rahim Ahmed</div><div class="dept-designation">Head of Engineering</div></div></div></div>
           <div class="dept-score"><div class="dept-score-num">100%</div><div class="dept-score-label">Success</div></div>
         </div>
         <div class="dept-metrics">
@@ -770,7 +819,7 @@
       </div>
       <div class="dept-card">
         <div class="dept-header">
-          <div><div class="dept-name">Marketing</div><div class="dept-head">Head: Karim Hassan</div></div>
+          <div><div class="dept-name">Marketing</div><div class="dept-head-info"><div class="dept-avatar">KH</div><div><div class="dept-head">Karim Hassan</div><div class="dept-designation">Head of Marketing</div></div></div></div>
           <div class="dept-score"><div class="dept-score-num">100%</div><div class="dept-score-label">Success</div></div>
         </div>
         <div class="dept-metrics">
@@ -781,7 +830,7 @@
       </div>
       <div class="dept-card">
         <div class="dept-header">
-          <div><div class="dept-name">Finance</div><div class="dept-head">Head: Jahir Uddin</div></div>
+          <div><div class="dept-name">Finance</div><div class="dept-head-info"><div class="dept-avatar">JU</div><div><div class="dept-head">Jahir Uddin</div><div class="dept-designation">Head of Finance</div></div></div></div>
           <div class="dept-score"><div class="dept-score-num" style="color:var(--gold)">50%</div><div class="dept-score-label">Success</div></div>
         </div>
         <div class="dept-metrics">
@@ -791,7 +840,7 @@
       </div>
       <div class="dept-card">
         <div class="dept-header">
-          <div><div class="dept-name">Operations</div><div class="dept-head">Head: Salma Begum</div></div>
+          <div><div class="dept-name">Operations</div><div class="dept-head-info"><div class="dept-avatar">SB</div><div><div class="dept-head">Salma Begum</div><div class="dept-designation">Head of Operations</div></div></div></div>
           <div class="dept-score"><div class="dept-score-num" style="color:var(--gold)">50%</div><div class="dept-score-label">Success</div></div>
         </div>
         <div class="dept-metrics">
@@ -838,7 +887,7 @@
     </div>
     <div class="dept-card" style="max-width:600px">
       <div class="dept-header">
-        <div><div class="dept-name">Engineering</div><div class="dept-head">Head: Rahim Ahmed</div></div>
+        <div><div class="dept-name">Engineering</div><div class="dept-head-info"><div class="dept-avatar">RA</div><div><div class="dept-head">Rahim Ahmed</div><div class="dept-designation">Head of Engineering</div></div></div></div>
         <div class="dept-score"><div class="dept-score-num">100%</div><div class="dept-score-label">Success</div></div>
       </div>
       <div class="dept-metrics">
