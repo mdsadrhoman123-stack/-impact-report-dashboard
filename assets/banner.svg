@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 320" width="1200" height="320" role="img" aria-label="Board Impact Report — Automated Executive Reporting System">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0B1120"/>
+      <stop offset="1" stop-color="#070B14"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.85" cy="0.15" r="0.7">
+      <stop offset="0" stop-color="#10B981" stop-opacity="0.32"/>
+      <stop offset="1" stop-color="#10B981" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="bar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#10B981"/>
+      <stop offset="1" stop-color="#22D3EE"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="320" fill="url(#bg)"/>
+  <rect width="1200" height="320" fill="url(#glow)"/>
+  <g stroke="#1E293B" stroke-width="1" opacity="0.5">
+    <path d="M0 80 H1200 M0 160 H1200 M0 240 H1200 M120 0 V320 M240 0 V320 M360 0 V320 M480 0 V320 M600 0 V320 M720 0 V320 M840 0 V320 M960 0 V320 M1080 0 V320"/>
+  </g>
+  <rect x="0" y="0" width="10" height="320" fill="url(#bar)"/>
+  <circle cx="60" cy="60" r="26" fill="none" stroke="#10B981" stroke-width="3" opacity="0.9"/>
+  <circle cx="60" cy="60" r="10" fill="#10B981"/>
+  <text x="110" y="66" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="15" fill="#8FA3BF" letter-spacing="3">PRODUCTION-GRADE AUTOMATION</text>
+  <text x="52" y="150" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="58" font-weight="700" fill="#E6EDF7">Board Impact Report</text>
+  <text x="54" y="196" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="23" fill="#9FB2CC">Zero-touch executive reporting — data in, boardroom-ready dashboard out.</text>
+  <g font-family="ui-monospace,Menlo,Consolas,monospace" font-size="14">
+    <rect x="54" y="238" width="150" height="34" rx="8" fill="#10B981" opacity="0.10" stroke="#10B981" stroke-width="1.3"/>
+    <text x="129" y="260" text-anchor="middle" fill="#E6EDF7">n8n · Scheduled</text>
+    <rect x="216" y="238" width="150" height="34" rx="8" fill="#22D3EE" opacity="0.10" stroke="#22D3EE" stroke-width="1.3"/>
+    <text x="291" y="260" text-anchor="middle" fill="#E6EDF7">Role-based views</text>
+    <rect x="378" y="238" width="176" height="34" rx="8" fill="#8FA3BF" opacity="0.10" stroke="#8FA3BF" stroke-width="1.3"/>
+    <text x="466" y="260" text-anchor="middle" fill="#E6EDF7">100% audit logging</text>
+  </g>
+  <g font-family="Segoe UI,Helvetica,Arial,sans-serif">
+    <text x="1140" y="120" text-anchor="end" font-size="46" font-weight="700" fill="#10B981">~90%</text>
+    <text x="1140" y="146" text-anchor="end" font-size="14" fill="#8FA3BF">less manual prep</text>
+    <text x="1140" y="196" text-anchor="end" font-size="46" font-weight="700" fill="#22D3EE">Mon 9AM</text>
+    <text x="1140" y="222" text-anchor="end" font-size="14" fill="#8FA3BF">auto-delivered</text>
+  </g>
+</svg>
