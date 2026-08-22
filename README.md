@@ -15,6 +15,12 @@
 <!-- Interactive Architecture Diagram -->
 [View Interactive Architecture Diagram](https://raw.githubusercontent.com/mdsadrhoman123-stack/-impact-report-dashboard/main/assets/diagrams/executive-interactive.html)
 
+<!-- Portfolio Navigation -->
+<script src="https://raw.githubusercontent.com/mdsadrhoman123-stack/-impact-report-dashboard/main/assets/navigation/navigation.js"></script>
+<script>
+autoInjectNavigation('-impact-report-dashboard');
+</script>
+
 ---
 
 ## Contents
