@@ -129,33 +129,33 @@ flowchart TD
 ### BEFORE (Manual Reporting - Time-Consuming)
 ```
 [Department Data] 
-    ↓ (manual collection)
+    â†“ (manual collection)
 [Spreadsheet Assembly] 
-    ↓ (hours of work)
+    â†“ (hours of work)
 [Manual Calculation] 
-    ↓ (error-prone)
+    â†“ (error-prone)
 [Generic Report] 
-    ↓ (one-size-fits-all)
+    â†“ (one-size-fits-all)
 [Email Distribution] 
-    ↓
-= **Day of manual work, stale data, no role customization** ❌
+    â†“
+= **Day of manual work, stale data, no role customization** âŒ
 ```
 
 ### AFTER (Automated Reporting - Instant)
 ```
 [Client Spreadsheet Update] 
-    ↓ (familiar interface)
+    â†“ (familiar interface)
 [Automated Data Sync] 
-    ↓ (instant)
+    â†“ (instant)
 [Monday Morning Trigger] 
-    ↓ (scheduled)
+    â†“ (scheduled)
 [Auto Performance Tagging] 
-    ↓ (intelligent)
+    â†“ (intelligent)
 [Role-Based Dashboard] 
-    ↓ (3 views)
+    â†“ (3 views)
 [Live URL Access] 
-    ↓
-= **Zero manual prep, fresh data, role-specific insights** ✅
+    â†“
+= **Zero manual prep, fresh data, role-specific insights** âœ…
 ```
 
 **The difference:** Executive reporting that's ready before Monday meetings with zero manual preparation time.
@@ -270,14 +270,14 @@ A: Yes, responsive design ensures clean reading on any device.
 
 **K MD SAYAD RAHMAN** - Sayad.dev | AI Automation
 
-**📧 Work Email:** khandokarsayad@gmail.com  
-**📧 Personal Email:** mdsadrhoman123@gmail.com  
-**💼 LinkedIn:** https://linkedin.com/in/khandokarsabbir  
-**🐙 GitHub:** https://github.com/mdsadrhoman123-stack
+**ðŸ“§ Work Email:** khandokarsayad@gmail.com  
+**ðŸ“§ Personal Email:** mdsadrhoman123@gmail.com  
+**ðŸ’¼ LinkedIn:** https://linkedin.com/in/khandokarsabbir  
+**ðŸ™ GitHub:** https://github.com/mdsadrhoman123-stack
 
-**🚀 Open to Work - Accepting New Automation Projects**
+**ðŸš€ Open to Work - Accepting New Automation Projects**
 
-**📩 Email me with your automation challenge - I'll tell you exactly 
+**ðŸ“© Email me with your automation challenge - I'll tell you exactly 
 which part I'd automate first, and which part I wouldn't.**
 
 ---
@@ -295,7 +295,7 @@ which part I'd automate first, and which part I wouldn't.**
 
 **Built by K MD SAYAD RAHMAN (Sayad.dev | AI Automation)**
 
-**📧 Contact:** khandokarsayad@gmail.com | mdsadrhoman123@gmail.com
+**ðŸ“§ Contact:** khandokarsayad@gmail.com | mdsadrhoman123@gmail.com
 
 Copyright (c) 2024 K MD SAYAD RAHMAN. All rights reserved. Portfolio use only.
 
