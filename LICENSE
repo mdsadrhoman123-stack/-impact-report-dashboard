@@ -1,0 +1,28 @@
+Copyright (c) 2026 K MD SAYAD RAHMAN
+All rights reserved.
+
+WHAT THIS REPOSITORY IS
+
+A portfolio record. It documents how a delivered automation system was
+designed, what it was built to prevent, and how it behaves when something
+fails. It is written to be read.
+
+WHAT YOU MAY DO
+
+Read it. Link to it. Quote a short passage with attribution. Show it to a
+colleague. That is what it is published for.
+
+WHAT IS NOT PERMITTED
+
+Copying, reproducing, republishing, modifying or redistributing the contents
+of this repository in whole or in substantial part, or presenting this work
+as your own.
+
+The systems described here were built for paying clients. The
+implementations — the workflow graphs, the execution order, the prompts, the
+thresholds and the integration wiring — are not published here, and remain
+with the engagements that commissioned them.
+
+ANYTHING ELSE
+
+Ask. khandokarsayad@gmail.com

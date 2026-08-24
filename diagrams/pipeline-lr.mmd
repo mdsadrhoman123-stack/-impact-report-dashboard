@@ -1,0 +1,18 @@
+flowchart LR
+    in(["The client updates their figures"])
+    run["Monday morning: grouped and scored"]
+    tag{"On target?"}
+    pub["Three depths, one address, before the meeting"]
+    flag["Behind target → tagged for attention"]
+
+    in --> run
+    run --> tag
+    tag --> pub
+    tag -.-> flag
+    flag --> pub
+
+    classDef default fill:#F8F7F3,stroke:#12151B,stroke-width:1px,color:#12151B;
+    classDef ok fill:#2F6B52,stroke:#12151B,stroke-width:1px,color:#F5F4EF;
+    classDef bad fill:#FEE2E2,stroke:#DC2626,stroke-width:1.5px,color:#7F1D1D;
+    class pub ok;
+    class flag bad;

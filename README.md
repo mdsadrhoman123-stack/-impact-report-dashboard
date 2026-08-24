@@ -1,303 +1,192 @@
-# Executive Teams: Automate Board Reporting Without Manual Prep
+<img src="assets/banner.svg" alt="Impact Report Dashboard — Board reporting, assembled weekly" width="100%">
 
-**Client:** Board of Directors | **Industry:** Executive Reporting | **Delivered by:** K MD SAYAD RAHMAN (Sayad.dev | AI Automation)
+# Impact Report Dashboard
 
-<!-- Professional Banner -->
-<img src="assets/banners/executive-banner.svg" alt="Executive Report Automation" style="width: 100%; max-width: 1200px; height: auto; border-radius: 10px; margin: 20px 0; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+**The weekly board picture is assembled, tagged and published before Monday's meeting, instead of costing someone the better part of a day to put together by hand.**
 
-<!-- Interactive Architecture Diagram -->
-[View Interactive Architecture Diagram](https://raw.githubusercontent.com/mdsadrhoman123-stack/-impact-report-dashboard/main/assets/diagrams/executive-interactive.html)
+![delivered to client](https://img.shields.io/badge/status-delivered%20to%20client-2F6B52?style=flat-square) ![sector](https://img.shields.io/badge/sector-Executive%20reporting-12151B?style=flat-square) ![built with](https://img.shields.io/badge/built%20with-n8n-12151B?style=flat-square) ![Role-specific views](https://img.shields.io/badge/Role--specific%20views-3%20%20(board%20/%20chief%20executive%20/%20manager)-5B6472?style=flat-square)
 
----
-
-## Contents
-
-- [The Problem](#the-problem)
-- [The Solution](#the-solution)
-- [Architecture](#architecture)
-- [How It Works](#how-it-works)
-- [Key Metrics](#key-metrics)
-- [Before/After Comparison](#beforeafter-comparison)
-- [Impact Statement](#impact-statement)
-- [Non-functional Highlights](#non-functional-highlights)
-- [Design Decisions](#design-decisions)
-- [What I'd Improve](#what-id-improve)
-- [Roadmap](#roadmap)
-- [What I'm Not Publishing](#what-im-not-publishing)
-- [FAQ](#faq)
-- [Contact](#contact)
+| | |
+| :--- | :--- |
+| **Built for** | Board and executive team |
+| **Industry** | Executive reporting |
+| **Status** | delivered to client |
+| **Role** | Designed, built and deployed end to end |
 
 ---
 
-## The Problem
+### On this page
 
-Boards and executives need a consistent weekly picture. Producing it by hand breaks down fast. A board secretary used to spend the better part of a day each week assembling department numbers into a report.
-
-**In practical terms:**
-- Manual assembly = **hours copying numbers every week**
-- Error-prone & stale = **data old by meeting time**
-- One-size-fits-none = **different roles need different detail levels**
-- No reliable trail = **accountability challenges**
-- Version confusion = **multiple spreadsheet versions**
-
-**The cost:** Day of manual work weekly plus risk of errors and stale data in executive decision-making.
+[The problem](#the-problem) · [What changed](#what-changed) · [How it works](#how-it-works) · [When it breaks](#when-it-breaks) · [The stack](#the-stack) · [Limitations](#honest-limitations) · [Read deeper](#read-deeper)
 
 ---
 
-## The Solution
+## The problem
 
-Automated executive reporting system that turns raw departmental data into a boardroom-ready, role-based dashboard - delivered automatically every Monday, with zero manual prep.
+A board secretary was spending the better part of a day every week assembling departmental figures into one report.
 
-**Core capabilities:**
-- **Scheduled Delivery:** Report ready every Monday 9 AM - no one has to remember to run it
-- **Role-Based Views:** Board/CEO/Manager each see the right depth from one dataset
-- **Performance Detection:** Departments auto-tagged High Performance vs Needs Attention
-- **Decoupled Architecture:** Report structure fully separated from data source
-- **Client-Friendly Input:** Non-technical clients update data through familiar spreadsheet
-- **Responsive & Shareable:** Single link that reads cleanly on any device
+The day was not the only cost. Figures copied by hand go stale between assembly and the meeting. One report cannot serve a board member and a department manager at the same depth, so it ends up serving neither well. And once a file has been emailed around, there is no longer one version of it.
 
----
+The failure that matters here is not a missing report. It is a meeting where three people are reading three different numbers and none of them knows it.
 
-## Architecture
+## What changed
+
+| | Before | After |
+| :--- | :--- | :--- |
+| **Assembling the report** | The better part of a day, weekly | Runs on a schedule, unattended |
+| **Data age at the meeting** | As old as the day it was typed | Read at generation time on Monday morning |
+| **Depth of detail** | One report for every audience | Three depths from one dataset |
+| **Versions in circulation** | However many were emailed | One address, always current |
+| **Departments falling behind** | Spotted if someone reads carefully | Tagged before anyone opens it |
+
+<sub>Before/after describes the change in process, not benchmarked throughput. Where a number is not measured, it is not claimed.</sub>
+
+## How it works
+
+Department figures land in a database from an interface the client already knows how to use. A weekly run groups them, scores each department against its own target, tags the ones falling behind, and renders three depths of the same dataset — board, chief executive, manager — to one stable address.
+
+<table>
+<tr>
+<td width="42" valign="top" align="center"><b>01</b></td><td valign="top"><b>Nothing to remember</b><br>The run happens on a schedule. Nobody starts it, and nobody has to be back from leave for it to happen.</td>
+</tr>
+<tr>
+<td width="42" valign="top" align="center"><b>02</b></td><td valign="top"><b>The figures come from where they already are</b><br>The client updates the same interface they were already using. No new tool to learn was part of the requirement, not an afterthought.</td>
+</tr>
+<tr>
+<td width="42" valign="top" align="center"><b>03</b></td><td valign="top"><b>Monday morning it assembles itself</b><br>Figures are grouped by department and each is scored against its own target — the same way every week, which is the point.</td>
+</tr>
+<tr>
+<td width="42" valign="top" align="center"><b>04</b></td><td valign="top"><b>Problems are marked, not buried</b><br>A department behind its target is tagged before anyone opens the report, rather than being something a reader has to notice.</td>
+</tr>
+<tr>
+<td width="42" valign="top" align="center"><b>05</b></td><td valign="top"><b>Each audience gets its own depth</b><br>Board, chief executive and manager read three renderings of one dataset. Nobody is handed detail they did not ask for, and nobody is missing detail they need.</td>
+</tr>
+<tr>
+<td width="42" valign="top" align="center"><b>06</b></td><td valign="top"><b>One address, not an attachment</b><br>The report is a link that is always current. That is what removes the question of which copy is the real one.</td>
+</tr>
+</table>
+
+### How it flows
+
+<sub>What happens to the client's work, in the order they experience it. The internal build — node graph, execution order, prompts, thresholds — is deliberately not published.</sub>
 
 ```mermaid
-flowchart TD
-    classDef blue fill:#3498db,color:#fff
-    classDef green fill:#2ecc71,color:#fff
-    classDef purple fill:#9b59b6,color:#fff
+flowchart LR
+    in(["The client updates their figures"])
+    run["Monday morning: grouped and scored"]
+    tag{"On target?"}
+    pub["Three depths, one address, before the meeting"]
+    flag["Behind target → tagged for attention"]
 
-    A[Client Spreadsheet]:::blue --> B[Data Sync]:::green
-    B --> C[Supabase PostgreSQL]:::green
-    C --> D[Weekly Monday Trigger]:::purple
-    D --> E[Compute & Group]:::purple
-    E --> F[Performance Tagging]:::purple
-    F --> G[Role-Based Rendering]:::green
-    G --> H[Vercel Dashboard]:::blue
-    E --> I[Audit Logging]:::blue
+    in --> run
+    run --> tag
+    tag --> pub
+    tag -.-> flag
+    flag --> pub
+
+    classDef default fill:#F8F7F3,stroke:#12151B,stroke-width:1px,color:#12151B;
+    classDef ok fill:#2F6B52,stroke:#12151B,stroke-width:1px,color:#F5F4EF;
+    classDef bad fill:#FEE2E2,stroke:#DC2626,stroke-width:1.5px,color:#7F1D1D;
+    class pub ok;
+    class flag bad;
 ```
 
-**Data Flow:**
-1. **Input:** Client updates familiar spreadsheet with latest metrics
-2. **Sync:** Data automatically synced to Supabase PostgreSQL
-3. **Trigger:** Weekly Monday 9 AM automation activates
-4. **Compute:** Data grouped by department and scored against targets
-5. **Tag:** Performance auto-detected (High vs Needs Attention)
-6. **Render:** Role-aware HTML dashboard generated
-7. **Publish:** Dashboard goes live at stable URL
-8. **Audit:** Every run logged for full traceability
+<details>
+<summary><b>What the shapes mean</b> — colour is not the only signal</summary>
 
----
-
-## How It Works
-
-### Step-by-Step Process:
-
-1. **Data Collection:** Latest metrics land in live datastore from client spreadsheet
-2. **Scheduled Trigger:** Weekly automation wakes every Monday morning
-3. **Data Processing:** Data grouped by department and scored against targets
-4. **Performance Analysis:** Departments auto-tagged based on target achievement
-5. **Role-Based Rendering:** Three views generated (Board/CEO/Manager) from single dataset
-6. **Dashboard Generation:** Clean, responsive HTML dashboard created
-7. **Automated Publishing:** Dashboard goes live at stable URL
-8. **Audit Logging:** Every generation logged for accountability and traceability
-
-### Technology Stack:
-- **Orchestration:** n8n Workflow Automation
-- **Database:** Supabase PostgreSQL for data storage
-- **Hosting:** Vercel for live dashboard deployment
-- **Trigger:** Scheduled automation (Monday 9 AM)
-- **Input:** Client-friendly spreadsheet interface
-- **Frontend:** Responsive HTML dashboard
-- **System Type:** Automated Executive Reporting System
-
----
-
-## Key Metrics
-
-| Metric | Value |
+| Shape | Means |
 | :--- | :--- |
-| Schedule | Weekly Monday 9 AM |
-| Role Views | 3 (Board/CEO/Manager) |
-| Audit Coverage | 100% |
-| Manual Prep Time | 0 minutes |
+| **rounded** | Where the client's process starts |
+| **box** | Something the system does |
+| **diamond** | A decision point |
+| **slanted** | A person has to act |
+| **green box** | The good outcome |
+| **red box** | Failure path — held, escalated or alerted |
+
+Red appears in exactly one role across every repo in this portfolio: where failure goes. Nowhere else. If you see red, something is being held, escalated or alerted.
+</details>
+
+> **Walk it interactively** — [open the demo](https://mdsadrhoman123-stack.github.io/-impact-report-dashboard/) and press **Break it** to watch the failure path light up. Source: [`docs/index.html`](docs/index.html)
+
+## When it breaks
+
+Most automation portfolios show you the happy path. The happy path is the easy half. This is the half that decides whether a system survives contact with a real business.
+
+| What goes wrong | How it is detected | What the system does | Who finds out |
+| :--- | :--- | :--- | :--- |
+| **The client has not updated their figures** | Source unchanged since the last run | Publishes with the previous week's data, labelled with its date | Dashboard states the date it was generated from |
+| **A department is missing entirely** | Expected group absent from the dataset | Renders the report without it rather than dropping the run | Report shows the department as not reported |
+| **The datastore is unreachable on a Monday** | Connection error at read time | Halts before publishing — the previous report stays up rather than being replaced by a broken one | Alert, immediately |
+| **A figure arrives in the wrong format** | Type check while grouping | That figure is held out and marked, the rest of the report still renders | Marked in place, on the report itself |
+| **A run produces nothing** | Empty output after grouping | Treated as a fault, not as an empty week | Alert — silence on a Monday is suspicious |
+| **Anything unanticipated** | Global error trigger | Halt before overwriting the published report | Alert with the run identifier |
+
+The default on an unhandled condition is to **stop and tell someone** — never to continue on a guess. A silent success is the failure mode that costs the most, because nobody goes looking for it.
+
+## The stack
+
+| Component | Why this one |
+| :--- | :--- |
+| **n8n** | Orchestrates the weekly run and the grouping, so the schedule is not a person's reminder |
+| **Supabase PostgreSQL** | One store the report is always read from, so there is no second version to reconcile |
+| **Vercel** | The dashboard lives at one stable address instead of being emailed as a file |
+| **Google Sheets** | The client updates figures where they already work — a new portal would have gone unused |
+
+### Counted, not estimated
+
+| | |
+| :--- | :--- |
+| Role-specific views | **3  (board / chief executive / manager)** |
+| Run schedule | **Weekly, Monday 09:00** |
+| Runs logged | **Every one** |
+| Manual assembly at report time | **None** |
+
+<sub>These are counts from the built system — nodes, stages, versions, gates. No efficiency percentages are published here without a stated measurement method.</sub>
+
+### Also worth knowing
+
+- The report structure is kept separate from the data source, so the client can change what they track without the reporting being rebuilt.
+
+## Honest limitations
+
+Every design decision costs something. These are the trade-offs in this build, stated by the person who made them.
+
+- Weekly by design. Between Monday runs the report does not move, which suits a board rhythm and would not suit an operations team watching a number hourly.
+- The figures are as good as what the client enters. Format is checked; whether a number is correct is not something this system can know.
+- Targets are configured values. They need reviewing as the business changes, or the tagging quietly measures against last year's ambition.
+- Three role views were right for this client's three audiences. A fourth audience is a change to the rendering, not a setting.
+
+## What is not in this repo
+
+- **Client data.** None, in any form. Not anonymised, not sampled.
+- **Credentials and endpoints.** Never committed. See [`NOTICE.md`](NOTICE.md).
+- **The workflow itself.** No exports, no node graph, no execution order, no prompts, no scoring thresholds, no integration wiring — not sanitised, not partial, not in a screenshot. That is the build, and the build belongs to the engagement that paid for it.
+
+This repository documents *how the problem was thought about* — the failure paths, the trade-offs, the reasoning. That is what tells you whether to hire someone. A copy of the wiring would not.
+
+This is a portfolio repository documenting delivered work. It is not a product you can clone and run against your own accounts.
+
+## Read deeper
+
+| | |
+| :--- | :--- |
+| [01 · The problem](docs/01-problem.md) | The situation before, in full |
+| [02 · The client journey](docs/02-journey.md) | Step by step, from their side |
+| [03 · Architecture](docs/03-architecture.md) | Diagrams and the reasoning |
+| [04 · Failure handling](docs/04-failure-handling.md) | Every path, and where it lands |
+| [05 · The stack](docs/05-stack.md) | What was chosen and what was rejected |
+| [06 · Results](docs/06-results.md) | What is measured and what is not |
+| [07 · Limitations](docs/07-limitations.md) | The trade-offs, in detail |
 
 ---
 
-## Before/After Comparison
+<img src="assets/cta.svg" alt="If a process depends on someone noticing when it breaks, that is the problem I work on." width="100%">
 
-### BEFORE (Manual Reporting - Time-Consuming)
-```
-[Department Data] 
-    ↓ (manual collection)
-[Spreadsheet Assembly] 
-    ↓ (hours of work)
-[Manual Calculation] 
-    ↓ (error-prone)
-[Generic Report] 
-    ↓ (one-size-fits-all)
-[Email Distribution] 
-    ↓
-= **Day of manual work, stale data, no role customization** ❌
-```
+### Tell me what the process is
 
-### AFTER (Automated Reporting - Instant)
-```
-[Client Spreadsheet Update] 
-    ↓ (familiar interface)
-[Automated Data Sync] 
-    ↓ (instant)
-[Monday Morning Trigger] 
-    ↓ (scheduled)
-[Auto Performance Tagging] 
-    ↓ (intelligent)
-[Role-Based Dashboard] 
-    ↓ (3 views)
-[Live URL Access] 
-    ↓
-= **Zero manual prep, fresh data, role-specific insights** ✅
-```
+I will tell you honestly whether automating it is worth your money — including when the answer is no.
 
-**The difference:** Executive reporting that's ready before Monday meetings with zero manual preparation time.
+**K MD SAYAD RAHMAN** — AI Automation Engineer  
+n8n · AI agents · production reliability  
+[khandokarsayad@gmail.com](mailto:khandokarsayad@gmail.com) · [mdsadrhoman123@gmail.com](mailto:mdsadrhoman123@gmail.com) · [LinkedIn](https://www.linkedin.com/in/khandokarsayad) · [More systems](https://github.com/mdsadrhoman123-stack)
 
----
-
-## Impact Statement
-
-**Business Value Delivered:**
-- **Zero manual prep** eliminates day of weekly work
-- **Fresh data every Monday** ensures decisions based on current information
-- **Role-based views** provide right detail level for each stakeholder
-- **Automated performance tagging** highlights areas needing attention
-- **Single source of truth** eliminates version confusion
-
-**Client ROI:** Executive decision-making supported by current, role-appropriate data with zero manual preparation overhead.
-
----
-
-## Non-functional Highlights
-
-**Reliability & Error Handling:**
-- **Scheduled Reliability:** Monday 9 AM trigger ensures consistent delivery
-- **No Silent Failures:** System either produces report or raises alert
-- **Audit Trail:** 100% of runs logged for accountability
-- **Decoupled Architecture:** Data source and presentation evolve independently
-- **Production-Grade:** Built for executive-level reliability requirements
-
-**Performance:**
-- **Instant Dashboard Generation:** Automated processing in minutes
-- **Real-Time Data Sync:** Spreadsheet to database synchronization
-- **Responsive Design:** Works cleanly on any device
-- **Scalable Architecture:** Handles increased departments and metrics
-
-**Executive Experience:**
-- **Role-Appropriate Detail:** Each stakeholder sees relevant information depth
-- **Performance Detection:** Automatic highlighting of high/low performers
-- **Single Link Access:** Easy sharing without version confusion
-- **Professional Presentation:** Boardroom-ready formatting and layout
-
----
-
-## Design Decisions
-
-**Why This Architecture:**
-- **Spreadsheet Input:** Non-technical clients comfortable with familiar interface
-- **Role-Based Views:** Different stakeholders need different information depth
-- **Decoupled Design:** Data structure changes don't break reporting
-- **Monday Schedule:** Reports ready before week's executive meetings
-- **Performance Tagging:** Automatic detection highlights focus areas
-
-**Trade-offs:**
-- **Schedule vs Real-Time:** Weekly schedule vs. real-time updates (balance freshness vs stability)
-- **Complexity vs Capability:** Role-based views add complexity but provide better user experience
-- **Spreadsheet vs Database:** Familiar input vs. technical interface (usability vs. control)
-
----
-
-## What I'd Improve
-
-With more time/budget:
-- **Real-Time Updates:** On-demand dashboard refresh capability
-- **Advanced Analytics:** Trend analysis and predictive insights
-- **Custom Report Builder:** User-configurable report layouts
-- **Multi-Format Export:** PDF, Excel, and other export options
-- **Integration Expansion:** Direct ERP and business system connections
-
----
-
-## Roadmap
-
-- [ ] **v2.0:** Real-time on-demand dashboard updates
-- [ ] **Advanced Analytics:** Trend analysis and predictive insights
-- [ ] **Custom Builder:** User-configurable report layouts
-- [ ] **Multi-Format:** PDF, Excel export options
-- [ ] **ERP Integration:** Direct business system connections
-
----
-
-## What I'm Not Publishing
-
-For client confidentiality and IP protection, I've deliberately omitted:
-
-- Workflow exports and internal automation logic
-- Database schema, queries, and migration scripts
-- Report-engine source and generation code
-- Credentials, endpoints, environment configuration
-- Real client data and identifying metrics
-- Proprietary performance tagging algorithms
-
-**This is a real client system for executive reporting. Board confidentiality applies.**
-
----
-
-## FAQ
-
-**Q: How does the role-based view work?**  
-A: Single dataset generates three different views - Board (strategic), CEO (operational), Manager (tactical).
-
-**Q: What if the client misses the spreadsheet update?**  
-A: System uses last available data and sends notification that update is needed.
-
-**Q: Can the schedule be customized?**  
-A: Yes, scheduling is flexible and can be adjusted to meet specific executive meeting cycles.
-
-**Q: Is the dashboard mobile-friendly?**  
-A: Yes, responsive design ensures clean reading on any device.
-
----
-
-## Contact
-
-**K MD SAYAD RAHMAN** - Sayad.dev | AI Automation
-
-**Work Email:** khandokarsayad@gmail.com  
-**Personal Email:** mdsadrhoman123@gmail.com  
-**LinkedIn:** https://linkedin.com/in/khandokarsabbir  
-**GitHub:** https://github.com/mdsadrhoman123-stack
-
-**Open to Work - Accepting New Automation Projects**
-
-**Email me with your automation challenge - I'll tell you exactly 
-which part I'd automate first, and which part I wouldn't.**
-
----
-
-## See My Other Automation Systems
-
-- [Real Estate AI Automation](../distressed-property-detection) - Property deal detection
-- [M&A Deal-Flow Automation](../edugrow-ma-platform) - M&A advisory systems
-- [Healthcare Document Automation](../medical-document-automation) - Medical records processing
-- [Enterprise Intake Automation](../flowdesk) - Client request processing
-
----
-
-<div align="center">
-
-**Built by K MD SAYAD RAHMAN (Sayad.dev | AI Automation)**
-
-**Contact:** khandokarsayad@gmail.com | mdsadrhoman123@gmail.com
-
-Copyright (c) 2024 K MD SAYAD RAHMAN. All rights reserved. Portfolio use only.
-
-*[n8n](https://n8n.io) | [Supabase](https://supabase.com) | [Executive Automation](https://linkedin.com/in/khandokarsabbir)*
-
-</div>
