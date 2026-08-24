@@ -4,7 +4,7 @@
 
 **The weekly board picture is assembled, tagged and published before Monday's meeting, instead of costing someone the better part of a day to put together by hand.**
 
-![delivered to client](https://img.shields.io/badge/status-delivered%20to%20client-2F6B52?style=flat-square) ![sector](https://img.shields.io/badge/sector-Executive%20reporting-12151B?style=flat-square) ![built with](https://img.shields.io/badge/built%20with-n8n-12151B?style=flat-square) ![Role-specific views](https://img.shields.io/badge/Role--specific%20views-3%20%20(board%20/%20chief%20executive%20/%20manager)-5B6472?style=flat-square)
+![delivered to client](https://img.shields.io/badge/status-delivered%20to%20client-2F6B52?style=flat-square) ![sector](https://img.shields.io/badge/sector-Executive%20reporting-12151B?style=flat-square) ![built with](https://img.shields.io/badge/built%20with-n8n-12151B?style=flat-square) ![Role-specific views](https://img.shields.io/badge/Role--specific%20views-3-5B6472?style=flat-square)
 
 | | |
 | :--- | :--- |
@@ -136,7 +136,7 @@ The default on an unhandled condition is to **stop and tell someone** — never 
 
 | | |
 | :--- | :--- |
-| Role-specific views | **3  (board / chief executive / manager)** |
+| Role-specific views | **3** |
 | Run schedule | **Weekly, Monday 09:00** |
 | Runs logged | **Every one** |
 | Manual assembly at report time | **None** |

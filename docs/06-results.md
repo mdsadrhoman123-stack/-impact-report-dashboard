@@ -6,7 +6,7 @@
 
 | | |
 | :--- | :--- |
-| Role-specific views | **3  (board / chief executive / manager)** |
+| Role-specific views | **3** |
 | Run schedule | **Weekly, Monday 09:00** |
 | Runs logged | **Every one** |
 | Manual assembly at report time | **None** |
