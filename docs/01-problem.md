@@ -1,6 +1,6 @@
 # 01 · The problem
 
-**Impact Report Dashboard** — Board and executive team
+**Impact Report Dashboard** — the problem, as Boards and executive teams describe it
 
 ---
 
@@ -22,4 +22,4 @@ Department figures land in a database from an interface the client already knows
 
 ---
 
-[← README](../README.md) · [02 · The client journey →](02-journey.md)
+[← README](../README.md) · [02 · The journey →](02-journey.md)
