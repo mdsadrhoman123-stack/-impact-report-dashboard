@@ -657,6 +657,13 @@ body{font-family:var(--fh);background:var(--bg);color:var(--t1);min-height:100vh
   <div class="pin-mark"><svg viewBox="0 0 20 20"><path d="M10 2a8 8 0 100 16A8 8 0 0010 2zm0 3a2 2 0 110 4 2 2 0 010-4zm0 9c-2.67 0-4.5-1.24-4.5-2.5S7.33 9 10 9s4.5 1.24 4.5 2.5S12.67 14 10 14z"/></svg></div>
   <div class="pin-brand">Impact<em>AI</em> Pro</div>
   <div class="pin-hint-txt">Secure Executive Dashboard · PIN: 1234</div>
+  <!-- Said on the entry screen, before any number is on screen to be misread.
+       Wording is load-bearing: .github/honesty-check.py looks for this exact
+       sentence and only lifts its numeric-claim rule for a page that carries
+       it. Change the words and the build goes red, which is the point. -->
+  <div class="pin-hint-txt" style="margin-top:-22px;max-width:340px;line-height:1.5">
+    Interface demo · every figure on this page is illustrative, not a measured client result
+  </div>
   <div class="pin-dots"><div class="pin-dot" id="pd0"></div><div class="pin-dot" id="pd1"></div><div class="pin-dot" id="pd2"></div><div class="pin-dot" id="pd3"></div></div>
   <div class="pin-pad">
     <div class="pin-k" onclick="pp('1')">1</div><div class="pin-k" onclick="pp('2')">2</div><div class="pin-k" onclick="pp('3')">3</div>
