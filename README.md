@@ -23,7 +23,7 @@
 
 ### On this page
 
-[The problem](#the-problem) · [What changed](#what-changed) · [How it works](#how-it-works) · [When it breaks](#when-it-breaks) · [The stack](#the-stack) · [Limitations](#honest-limitations) · [What is here](#what-is-in-this-repository) · [Read deeper](#read-deeper)
+[The problem](#the-problem) · [What changed](#what-changed) · [How it works](#how-it-works) · [The shape of it](#the-shape-of-the-system) · [When it breaks](#when-it-breaks) · [Why this way](#why-it-is-built-this-way) · [Limitations](#honest-limitations) · [What is here](#what-is-in-this-repository) · [Read deeper](#read-deeper)
 
 ---
 
@@ -114,29 +114,35 @@ Red appears in exactly one role across every repo in this portfolio: where failu
 
 > **Walk it interactively** — [`docs/index.html`](docs/index.html) is a single self-contained page. Download it, open it in any browser, and press **Break it** to watch the failure path light up. Nothing to install, no network calls.
 
-## When it breaks
+## The shape of the system
 
-Most automation portfolios show you the happy path. The happy path is the easy half. This is the half that decides whether a system survives contact with a real business.
+Parts and the role each one plays. Not the wiring — no execution order, no prompt text, no thresholds. That is a deliberate line, and the last branch of the tree names exactly what sits on the other side of it.
 
-| What goes wrong | How it is detected | What the system does | Who finds out |
-| :--- | :--- | :--- | :--- |
-| **The client has not updated their figures** | Source unchanged since the last run | Publishes with the previous week's data, labelled with its date | Dashboard states the date it was generated from |
-| **A department is missing entirely** | Expected group absent from the dataset | Renders the report without it rather than dropping the run | Report shows the department as not reported |
-| **The datastore is unreachable on a Monday** | Connection error at read time | Halts before publishing — the previous report stays up rather than being replaced by a broken one | Alert, immediately |
-| **A figure arrives in the wrong format** | Type check while grouping | That figure is held out and marked, the rest of the report still renders | Marked in place, on the report itself |
-| **A run produces nothing** | Empty output after grouping | Treated as a fault, not as an empty week | Alert — silence on a Monday is suspicious |
-| **Anything unanticipated** | Global error trigger | Halt before overwriting the published report | Alert with the run identifier |
+```text
+Impact Report Dashboard — the running system
+│
+├── Interfaces ...................... the systems it talks to
+│   └── Google Sheets ............... The client updates figures where they already work — a new portal would have gone unused
+│
+├── Memory .......................... what is remembered, and for how long
+│   └── Supabase PostgreSQL ......... One store the report is always read from, so there is no second version to reconcile
+│
+├── Ground .......................... what the whole thing runs on
+│   ├── n8n ......................... Orchestrates the weekly run and the grouping, so the schedule is not a person's reminder
+│   └── Vercel ...................... The dashboard lives at one stable address instead of being emailed as a file
+│
+├── Failure design .................. 6 paths, designed before the features
+│   ├── detected by ................. an error output, a timer, or a failed connection
+│   ├── handled by .................. falling back, holding, or halting — never guessing
+│   └── announced to ................ a named person, with the reason attached
+│
+└── Not in this repository .......... the part that would let you skip the thinking
+    ├── the node graph .............. which part runs after which, and on what condition
+    ├── the thresholds .............. what counts as urgent, late, at capacity, a match
+    └── the credentials ............. never committed, in any form, at any point
+```
 
-The default on an unhandled condition is to **stop and tell someone** — never to continue on a guess. A silent success is the failure mode that costs the most, because nobody goes looking for it.
-
-## The stack
-
-| Component | Why this one |
-| :--- | :--- |
-| **n8n** | Orchestrates the weekly run and the grouping, so the schedule is not a person's reminder |
-| **Supabase PostgreSQL** | One store the report is always read from, so there is no second version to reconcile |
-| **Vercel** | The dashboard lives at one stable address instead of being emailed as a file |
-| **Google Sheets** | The client updates figures where they already work — a new portal would have gone unused |
+Read it as a set of decisions rather than a parts list. Every part is there because a specific failure or a specific constraint put it there, and the two sections below are the same story told twice: **When it breaks** is what each part is defending against, and **Honest limitations** is what it costs to have chosen that part and not another.
 
 ### Counted, not estimated
 
@@ -153,6 +159,60 @@ The default on an unhandled condition is to **stop and tell someone** — never 
 
 - The report structure is kept separate from the data source, so the client can change what they track without the reporting being rebuilt.
 
+## When it breaks
+
+Most automation portfolios show you the happy path. The happy path is the easy half. This is the half that decides whether a system survives contact with a real business.
+
+| What goes wrong | How it is detected | What the system does | Who finds out |
+| :--- | :--- | :--- | :--- |
+| **The client has not updated their figures** | Source unchanged since the last run | Publishes with the previous week's data, labelled with its date | Dashboard states the date it was generated from |
+| **A department is missing entirely** | Expected group absent from the dataset | Renders the report without it rather than dropping the run | Report shows the department as not reported |
+| **The datastore is unreachable on a Monday** | Connection error at read time | Halts before publishing — the previous report stays up rather than being replaced by a broken one | Alert, immediately |
+| **A figure arrives in the wrong format** | Type check while grouping | That figure is held out and marked, the rest of the report still renders | Marked in place, on the report itself |
+| **A run produces nothing** | Empty output after grouping | Treated as a fault, not as an empty week | Alert — silence on a Monday is suspicious |
+| **Anything unanticipated** | Global error trigger | Halt before overwriting the published report | Alert with the run identifier |
+
+The default on an unhandled condition is to **stop and tell someone** — never to continue on a guess. A silent success is the failure mode that costs the most, because nobody goes looking for it.
+
+## Why it is built this way
+
+Three decisions, each with the option that was turned down and the price of turning it down. A choice with no cost attached to it was not a choice — it was a default, and defaults are not worth reading about.
+
+<details open>
+<summary><b>Why the figures arrive from a spreadsheet</b></summary>
+
+**What it does.** Departments enter numbers where they already work, and the run picks them up from there.
+
+**What was turned down.** A data-entry portal with validation at the point of entry. Better data in principle — and a portal nobody logs into is a report nobody updates, which is a worse outcome than a slightly messier sheet.
+
+**What that costs.** Format is checked; whether a number is correct is not something this system can know, and it does not pretend to.
+
+</details>
+
+<details>
+<summary><b>Why one address instead of a file per audience</b></summary>
+
+**What it does.** One stable URL rendering three depths of the same dataset — board, chief executive, manager.
+
+**What was turned down.** A generated PDF emailed to each audience. Familiar, and it works offline — and within a day there are four versions in four inboxes and no agreement about which one is current.
+
+**What that costs.** Three role views cover the three audiences in the brief. A fourth audience is a change to the rendering, not a setting someone can switch on.
+
+</details>
+
+<details>
+<summary><b>Why the run is weekly and scheduled</b></summary>
+
+**What it does.** The grouping and scoring happen on a schedule, so the report is not somebody's reminder to remember.
+
+**What was turned down.** An on-demand refresh. Always current — and it invites arguing about a number that moved in the middle of the meeting, which is how a reporting tool loses a room's trust.
+
+**What that costs.** Between runs the report does not move. That suits a board rhythm, and it would not suit an operations team watching a number hourly.
+
+</details>
+
+Every cost above also appears in **Honest limitations** below. It is there twice on purpose: once as the reasoning, once as the consequence, so neither can be quietly dropped from the other.
+
 ## Honest limitations
 
 Every design decision costs something. These are the trade-offs in this build, stated by the person who made them.
@@ -164,38 +224,42 @@ Every design decision costs something. These are the trade-offs in this build, s
 
 ## What is in this repository
 
+Every file, and the question it answers. Same layout in all eleven repositories in this portfolio, so the second one you open needs no orientation at all.
+
 ```text
 -impact-report-dashboard/
-├── README.md                      ← you are here
-├── SECURITY.md                    # how to report something that should not be public
-├── NOTICE.md                      # what is withheld, and why
-├── LICENSE                        # covers the documentation, not a software grant
+├── README.md ....................... ← you are here
+├── SECURITY.md ..................... how to report something that should not be public
+├── NOTICE.md ....................... what is withheld, and why
+├── LICENSE ......................... covers the documentation, not a software grant
 │
-├── index.html                     # the hosted dashboard, one self-contained file
+├── index.html ...................... the hosted dashboard, one self-contained file
 │
-├── docs/
-│   ├── index.html                 # the interactive demo — one file, opens with no network
-│   ├── 01-problem.md              # the situation before, in full
-│   ├── 02-journey.md              # step by step, from their side
-│   ├── 03-architecture.md         # the diagrams and the reasoning
-│   ├── 04-failure-handling.md     # every failure path, and where it lands
-│   ├── 05-stack.md                # what was chosen, and what was rejected
-│   ├── 06-results.md              # what is measured, and what is not
-│   └── 07-limitations.md          # the trade-offs, in detail
+├── docs/ ........................... the long form — read in order or not at all
+│   ├── index.html .................. the interactive demo, one file, no network
+│   ├── 01-problem.md ............... the situation before, in full
+│   ├── 02-journey.md ............... step by step, from their side
+│   ├── 03-architecture.md .......... the diagrams, and why they are shaped that way
+│   ├── 04-failure-handling.md ...... every failure path, and where it lands
+│   ├── 05-stack.md ................. each choice, the option turned down, the cost
+│   ├── 06-results.md ............... what is measured, and what is deliberately not
+│   └── 07-limitations.md ........... the trade-offs, in detail
 │
-├── diagrams/
-│   ├── pipeline-lr.mmd            # the client-level flow, left to right
-│   └── pipeline-tb.mmd            # the same flow, top to bottom
+├── diagrams/ ....................... source, so the flow can be re-rendered
+│   ├── pipeline-lr.mmd ............. the client-level flow, left to right
+│   └── pipeline-tb.mmd ............. the same flow, top to bottom
 │
-├── assets/                        # banner and closing card, SVG, no CDN
+├── assets/ ......................... SVG only — nothing loaded from a CDN
+│   ├── banner.svg .................. the header on this page
+│   └── cta.svg ..................... the closing card
 │
-├── workflows/
-│   └── README.md                  # empty on purpose — see below
+├── workflows/ ...................... empty on purpose — see below
+│   └── README.md ................... why it is empty, in writing
 │
-└── .github/
-    ├── honesty-check.py           # the claim linter behind the badge
+└── .github/ ........................ the badge at the top of this page
+    ├── honesty-check.py ............ the claim linter it runs
     └── workflows/
-        └── honesty-check.yml      # runs it on every push
+        └── honesty-check.yml ....... runs it on every push
 ```
 
 There is no `src/` in that tree, and no `workflows/*.json`. That is not an omission — it is the design, and the next section says exactly what is being withheld and why.
